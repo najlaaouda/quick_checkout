@@ -934,17 +934,12 @@
       <div class="stepper">
         <div class="step-item" data-step="1">
           <div class="step-circle active" id="step1-circle">01</div>
-          <span class="step-label active" id="step1-label">البريد الالكتروني</span>
+          <span class="step-label active" id="step1-label">بيانات الدخول</span>
         </div>
         <div class="step-line" id="line1-2"></div>
         <div class="step-item" data-step="2">
           <div class="step-circle" id="step2-circle">02</div>
-          <span class="step-label" id="step2-label">رقم الهاتف</span>
-        </div>
-        <div class="step-line" id="line2-3"></div>
-        <div class="step-item" data-step="3">
-          <div class="step-circle" id="step3-circle">03</div>
-          <span class="step-label" id="step3-label">الدفع</span>
+          <span class="step-label" id="step2-label">الدفع</span>
         </div>
       </div>
 
@@ -1210,7 +1205,7 @@
       '1-otp': document.getElementById('step1-otp'),
       2: document.getElementById('step2'),
       '2-otp': document.getElementById('step2-otp'),
-      3: document.getElementById('step3')
+      'payment': document.getElementById('step3')
     };
 
     // ===== HELPERS =====
@@ -1227,20 +1222,16 @@
     }
 
     function updateStepper(step) {
+      // step: 1 = بيانات الدخول active, 2 = الدفع active (بيانات done)
       const circles = [
         document.getElementById('step1-circle'),
-        document.getElementById('step2-circle'),
-        document.getElementById('step3-circle')
+        document.getElementById('step2-circle')
       ];
       const labels = [
         document.getElementById('step1-label'),
-        document.getElementById('step2-label'),
-        document.getElementById('step3-label')
+        document.getElementById('step2-label')
       ];
-      const lines = [
-        document.getElementById('line1-2'),
-        document.getElementById('line2-3')
-      ];
+      const line = document.getElementById('line1-2');
 
       circles.forEach((c, i) => {
         const num = i + 1;
@@ -1259,10 +1250,7 @@
         }
       });
 
-      lines.forEach((l, i) => {
-        l.className = 'step-line';
-        if (i + 1 < step) l.classList.add('done');
-      });
+      line.className = 'step-line' + (step > 1 ? ' done' : '');
     }
 
     // ===== OTP LOGIC =====
@@ -1383,8 +1371,7 @@
       }
 
       clearInterval(emailTimer);
-      currentStep = 2;
-      updateStepper(2);
+      // الانتقال لإدخال الهاتف ضمن نفس الخطوة
       showStep(2);
       showToast('تم التحقق من البريد الإلكتروني بنجاح', 'success');
     });
@@ -1433,9 +1420,9 @@
       }
 
       clearInterval(phoneTimer);
-      currentStep = 3;
-      updateStepper(3);
-      showStep(3);
+      currentStep = 2;
+      updateStepper(2);
+      showStep('payment');
       showToast('تم التحقق من رقم الهاتف بنجاح', 'success');
     });
 
