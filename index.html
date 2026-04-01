@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>صفحة الدفع - Najlaa</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Cairo', sans-serif;
       background: #f5f5f5;
@@ -21,12 +27,18 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    .nav-links { display: flex; gap: 28px; align-items: center; }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
     .nav-links a {
       text-decoration: none;
       color: #333;
@@ -34,21 +46,36 @@
       font-weight: 600;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: #7b2d8e; }
-    .nav-left { display: flex; align-items: center; gap: 20px; }
+
+    .nav-links a:hover {
+      color: #7b2d8e;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
     .nav-account {
       display: flex;
       align-items: center;
       gap: 8px;
       cursor: pointer;
     }
+
     .nav-account img {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       object-fit: cover;
     }
-    .nav-account span { font-size: 14px; font-weight: 600; }
+
+    .nav-account span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
     .nav-cart {
       position: relative;
       display: flex;
@@ -59,7 +86,12 @@
       font-weight: 600;
       color: #333;
     }
-    .nav-cart svg { width: 26px; height: 26px; }
+
+    .nav-cart svg {
+      width: 26px;
+      height: 26px;
+    }
+
     .cart-badge {
       position: absolute;
       top: -6px;
@@ -91,13 +123,15 @@
       background: #fff;
       border-radius: 16px;
       padding: 36px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
     }
+
     .checkout-title {
       font-size: 28px;
       font-weight: 800;
       margin-bottom: 8px;
     }
+
     .checkout-subtitle {
       font-size: 14px;
       color: #777;
@@ -111,6 +145,7 @@
       justify-content: center;
       margin-bottom: 32px;
     }
+
     .step-item {
       display: flex;
       flex-direction: column;
@@ -119,6 +154,7 @@
       position: relative;
       z-index: 1;
     }
+
     .step-circle {
       width: 44px;
       height: 44px;
@@ -132,23 +168,37 @@
       color: #999;
       transition: all 0.4s ease;
     }
+
     .step-circle.active {
       background: #7b2d8e;
       color: #fff;
     }
+
     .step-circle.done {
       background: #27ae60;
       color: #fff;
     }
-    .step-circle.done svg { width: 22px; height: 22px; }
+
+    .step-circle.done svg {
+      width: 22px;
+      height: 22px;
+    }
+
     .step-label {
       font-size: 13px;
       color: #999;
       font-weight: 600;
       transition: color 0.3s;
     }
-    .step-label.active { color: #7b2d8e; }
-    .step-label.done { color: #27ae60; }
+
+    .step-label.active {
+      color: #7b2d8e;
+    }
+
+    .step-label.done {
+      color: #27ae60;
+    }
+
     .step-line {
       width: 100px;
       height: 3px;
@@ -158,17 +208,31 @@
       border-radius: 2px;
       transition: background 0.4s ease;
     }
-    .step-line.done { background: #27ae60; }
+
+    .step-line.done {
+      background: #27ae60;
+    }
 
     /* ===== FORM STEPS ===== */
     .step-content {
       display: none;
       animation: fadeSlide 0.4s ease;
     }
-    .step-content.active { display: block; }
+
+    .step-content.active {
+      display: block;
+    }
+
     @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .form-label {
@@ -177,6 +241,7 @@
       margin-bottom: 10px;
       display: block;
     }
+
     .form-input {
       width: 100%;
       padding: 14px 16px;
@@ -189,9 +254,19 @@
       outline: none;
       transition: border-color 0.3s;
     }
-    .form-input:focus { border-color: #7b2d8e; }
-    .form-input::placeholder { color: #bbb; }
-    .form-input.error { border-color: #e74c3c; }
+
+    .form-input:focus {
+      border-color: #7b2d8e;
+    }
+
+    .form-input::placeholder {
+      color: #bbb;
+    }
+
+    .form-input.error {
+      border-color: #e74c3c;
+    }
+
     .error-msg {
       color: #e74c3c;
       font-size: 13px;
@@ -214,8 +289,16 @@
       margin-left: auto;
       transition: all 0.3s;
     }
-    .btn-primary:hover { background: #6a2579; transform: translateY(-1px); }
-    .btn-primary:active { transform: translateY(0); }
+
+    .btn-primary:hover {
+      background: #6a2579;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
     .btn-primary:disabled {
       background: #c9a8d2;
       cursor: not-allowed;
@@ -229,7 +312,11 @@
       margin-bottom: 8px;
       text-align: center;
     }
-    .otp-info strong { color: #333; }
+
+    .otp-info strong {
+      color: #333;
+    }
+
     .edit-link {
       display: flex;
       align-items: center;
@@ -242,8 +329,15 @@
       margin-bottom: 20px;
       justify-content: flex-start;
     }
-    .edit-link:hover { text-decoration: underline; }
-    .edit-link svg { width: 16px; height: 16px; }
+
+    .edit-link:hover {
+      text-decoration: underline;
+    }
+
+    .edit-link svg {
+      width: 16px;
+      height: 16px;
+    }
 
     .otp-container {
       display: flex;
@@ -252,6 +346,7 @@
       margin-bottom: 16px;
       direction: ltr;
     }
+
     .otp-input {
       width: 52px;
       height: 56px;
@@ -264,9 +359,19 @@
       outline: none;
       transition: border-color 0.3s;
     }
-    .otp-input:focus { border-color: #7b2d8e; }
-    .otp-input.filled { border-color: #7b2d8e; background: #faf5fc; }
-    .otp-input.error { border-color: #e74c3c; }
+
+    .otp-input:focus {
+      border-color: #7b2d8e;
+    }
+
+    .otp-input.filled {
+      border-color: #7b2d8e;
+      background: #faf5fc;
+    }
+
+    .otp-input.error {
+      border-color: #e74c3c;
+    }
 
     .resend-timer {
       text-align: center;
@@ -274,13 +379,17 @@
       color: #999;
       margin-bottom: 8px;
     }
+
     .resend-link {
       color: #7b2d8e;
       cursor: pointer;
       font-weight: 600;
       text-decoration: none;
     }
-    .resend-link:hover { text-decoration: underline; }
+
+    .resend-link:hover {
+      text-decoration: underline;
+    }
 
     /* ===== PHONE INPUT ===== */
     .phone-wrapper {
@@ -292,8 +401,15 @@
       transition: border-color 0.3s;
       direction: ltr;
     }
-    .phone-wrapper:focus-within { border-color: #7b2d8e; }
-    .phone-wrapper.error { border-color: #e74c3c; }
+
+    .phone-wrapper:focus-within {
+      border-color: #7b2d8e;
+    }
+
+    .phone-wrapper.error {
+      border-color: #e74c3c;
+    }
+
     .country-select {
       display: flex;
       align-items: center;
@@ -307,8 +423,15 @@
       white-space: nowrap;
       user-select: none;
     }
-    .country-flag { font-size: 22px; }
-    .country-code { color: #555; }
+
+    .country-flag {
+      font-size: 22px;
+    }
+
+    .country-code {
+      color: #555;
+    }
+
     .phone-input {
       flex: 1;
       border: none;
@@ -318,7 +441,10 @@
       outline: none;
       direction: ltr;
     }
-    .phone-input::placeholder { color: #bbb; }
+
+    .phone-input::placeholder {
+      color: #bbb;
+    }
 
     /* ===== PAYMENT ===== */
     .payment-security {
@@ -330,7 +456,12 @@
       margin-bottom: 20px;
       justify-content: flex-end;
     }
-    .payment-security svg { width: 18px; height: 18px; color: #bbb; }
+
+    .payment-security svg {
+      width: 18px;
+      height: 18px;
+      color: #bbb;
+    }
 
     .payment-option {
       border: 2px solid #e8e8e8;
@@ -343,13 +474,22 @@
       justify-content: space-between;
       transition: all 0.3s;
     }
-    .payment-option:hover { border-color: #d0b8d8; }
-    .payment-option.selected { border-color: #7b2d8e; background: #faf5fc; }
+
+    .payment-option:hover {
+      border-color: #d0b8d8;
+    }
+
+    .payment-option.selected {
+      border-color: #7b2d8e;
+      background: #faf5fc;
+    }
+
     .payment-option-right {
       display: flex;
       align-items: center;
       gap: 12px;
     }
+
     .payment-radio {
       width: 22px;
       height: 22px;
@@ -360,9 +500,11 @@
       justify-content: center;
       transition: all 0.3s;
     }
+
     .payment-option.selected .payment-radio {
       border-color: #7b2d8e;
     }
+
     .payment-radio-inner {
       width: 12px;
       height: 12px;
@@ -371,14 +513,25 @@
       transform: scale(0);
       transition: transform 0.3s;
     }
-    .payment-option.selected .payment-radio-inner { transform: scale(1); }
-    .payment-label { font-size: 15px; font-weight: 600; }
+
+    .payment-option.selected .payment-radio-inner {
+      transform: scale(1);
+    }
+
+    .payment-label {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
     .payment-icons {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .payment-icons img { height: 24px; }
+
+    .payment-icons img {
+      height: 24px;
+    }
 
     .discount-toggle {
       display: flex;
@@ -391,15 +544,26 @@
       margin-top: 16px;
       margin-bottom: 12px;
     }
-    .discount-toggle:hover { text-decoration: underline; }
-    .discount-toggle svg { width: 18px; height: 18px; }
+
+    .discount-toggle:hover {
+      text-decoration: underline;
+    }
+
+    .discount-toggle svg {
+      width: 18px;
+      height: 18px;
+    }
 
     .discount-input-wrapper {
       display: none;
       gap: 10px;
       margin-bottom: 16px;
     }
-    .discount-input-wrapper.show { display: flex; }
+
+    .discount-input-wrapper.show {
+      display: flex;
+    }
+
     .discount-input {
       flex: 1;
       padding: 12px 16px;
@@ -409,7 +573,11 @@
       font-family: 'Cairo', sans-serif;
       outline: none;
     }
-    .discount-input:focus { border-color: #7b2d8e; }
+
+    .discount-input:focus {
+      border-color: #7b2d8e;
+    }
+
     .discount-btn {
       padding: 12px 24px;
       background: #7b2d8e;
@@ -436,24 +604,39 @@
       margin-top: 20px;
       transition: all 0.3s;
     }
-    .btn-confirm:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(123,45,142,0.3); }
-    .btn-confirm:active { transform: translateY(0); }
-    .btn-confirm:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .btn-confirm:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(123, 45, 142, 0.3);
+    }
+
+    .btn-confirm:active {
+      transform: translateY(0);
+    }
+
+    .btn-confirm:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
 
     /* ===== COURSE CARD ===== */
     .course-card {
       background: #fff;
       border-radius: 16px;
       padding: 36px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
       height: fit-content;
     }
+
     .course-header {
       display: flex;
       gap: 20px;
       align-items: flex-start;
       margin-bottom: 24px;
     }
+
     .course-image {
       width: 140px;
       height: 140px;
@@ -461,18 +644,25 @@
       object-fit: cover;
       border: 1px solid #eee;
     }
+
     .course-info h2 {
       font-size: 24px;
       font-weight: 800;
       margin-bottom: 6px;
     }
+
     .course-price {
       font-size: 18px;
       font-weight: 700;
       color: #7b2d8e;
     }
 
-    .course-details { display: flex; flex-direction: column; gap: 14px; }
+    .course-details {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
     .course-detail {
       display: flex;
       align-items: center;
@@ -480,8 +670,19 @@
       font-size: 15px;
       color: #555;
     }
-    .course-detail svg { width: 20px; height: 20px; color: #7b2d8e; flex-shrink: 0; }
-    .course-detail strong { color: #333; margin-left: 4px; }
+
+    .course-detail svg {
+      width: 20px;
+      height: 20px;
+      color: #7b2d8e;
+      flex-shrink: 0;
+    }
+
+    .course-detail strong {
+      color: #333;
+      margin-left: 4px;
+    }
+
     .course-badge {
       display: inline-flex;
       align-items: center;
@@ -499,11 +700,13 @@
       padding-top: 20px;
       border-top: 1px solid #eee;
     }
+
     .course-description p {
       font-size: 14px;
       color: #777;
       line-height: 1.8;
     }
+
     .course-description .edit-note {
       font-size: 13px;
       color: #7b2d8e;
@@ -519,40 +722,118 @@
       z-index: 200;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
-    .success-overlay.show { display: flex; }
+
+    .success-overlay.show {
+      display: flex;
+    }
+
     .success-modal {
       background: #fff;
-      border-radius: 20px;
-      padding: 48px;
+      border-radius: 16px;
+      padding: 40px 48px;
       text-align: center;
-      max-width: 420px;
+      width: 100%;
+      max-width: 560px;
+      position: relative;
       animation: popIn 0.4s ease;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.2);
     }
+
     @keyframes popIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .success-icon {
-      width: 80px;
-      height: 80px;
-      background: #27ae60;
+
+    .success-close {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 32px;
+      height: 32px;
+      border: 2px solid #ccc;
       border-radius: 50%;
+      background: none;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
+      color: #999;
+      font-size: 16px;
+      transition: border-color 0.2s, color 0.2s;
     }
-    .success-icon svg { width: 40px; height: 40px; color: #fff; }
-    .success-modal h2 { font-size: 24px; margin-bottom: 10px; }
-    .success-modal p { color: #777; font-size: 15px; margin-bottom: 24px; }
+    .success-close:hover { border-color: #888; color: #555; }
+    .success-close svg { width: 16px; height: 16px; }
+
+    .success-badge {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
+      position: relative;
+    }
+    .success-badge svg { width: 72px; height: 72px; }
+
+    .success-modal h2 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .success-order-num {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 6px;
+    }
+
+    .success-total {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .success-details-box {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      text-align: right;
+    }
+    .success-details-box .details-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .success-details-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      direction: rtl;
+    }
+    .success-details-row .item-info {}
+    .success-details-row .item-name {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .success-details-row .item-type {
+      font-size: 13px;
+      color: #999;
+      margin-top: 2px;
+    }
+    .success-details-row .item-price {
+      font-size: 15px;
+      font-weight: 700;
+      direction: ltr;
+    }
+
     .btn-success {
-      background: #27ae60;
+      background: #7b2d8e;
       color: #fff;
       border: none;
-      padding: 14px 40px;
+      width: 100%;
+      padding: 16px;
       border-radius: 10px;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       font-family: 'Cairo', sans-serif;
       cursor: pointer;
@@ -560,11 +841,26 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      .main-container { grid-template-columns: 1fr; }
-      .navbar { padding: 10px 16px; }
-      .nav-links { display: none; }
-      .checkout-card, .course-card { padding: 24px; }
-      .step-line { width: 60px; }
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+
+      .navbar {
+        padding: 10px 16px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .checkout-card,
+      .course-card {
+        padding: 24px;
+      }
+
+      .step-line {
+        width: 60px;
+      }
     }
 
     /* ===== TOAST ===== */
@@ -582,11 +878,21 @@
       z-index: 300;
       transition: transform 0.4s ease;
     }
-    .toast.show { transform: translateX(-50%) translateY(0); }
-    .toast.error { background: #e74c3c; }
-    .toast.success { background: #27ae60; }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast.error {
+      background: #e74c3c;
+    }
+
+    .toast.success {
+      background: #27ae60;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- NAVBAR -->
@@ -601,12 +907,17 @@
     <div class="nav-left">
       <div class="nav-account">
         <span>حسابي</span>
-        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face" alt="Najlaa">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face"
+          alt="Najlaa">
         <span style="font-weight:400; color:#555">Najlaa</span>
       </div>
       <div class="nav-cart">
         <span class="cart-badge">0</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 01-8 0" />
+        </svg>
         <span>السلة</span>
       </div>
     </div>
@@ -640,7 +951,8 @@
       <!-- STEP 1: EMAIL -->
       <div class="step-content active" id="step1">
         <label class="form-label">البريد الالكتروني</label>
-        <input type="email" class="form-input" id="emailInput" placeholder="example@gmail.com" dir="ltr" style="text-align:left;">
+        <input type="email" class="form-input" id="emailInput" placeholder="example@gmail.com" dir="ltr"
+          style="text-align:left;">
         <p class="error-msg" id="emailError">يرجى إدخال بريد إلكتروني صحيح</p>
         <button class="btn-primary" id="emailNextBtn">التالي</button>
       </div>
@@ -649,7 +961,10 @@
       <div class="step-content" id="step1-otp">
         <p class="otp-info">لقد تم ارسال كود التحقق على بريدك الالكتروني "<strong id="otpEmailDisplay"></strong>"</p>
         <a class="edit-link" id="editEmailLink">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
           تعديل البريد الالكتروني
         </a>
         <div class="otp-container" id="emailOtpContainer">
@@ -660,7 +975,8 @@
           <input type="text" class="otp-input" maxlength="1" data-index="4" inputmode="numeric">
           <input type="text" class="otp-input" maxlength="1" data-index="5" inputmode="numeric">
         </div>
-        <p class="resend-timer" id="emailResendTimer">يمكنك إعادة طلب الكود بعد <span id="emailTimerCount">60</span> ثانية</p>
+        <p class="resend-timer" id="emailResendTimer">يمكنك إعادة طلب الكود بعد <span id="emailTimerCount">60</span>
+          ثانية</p>
         <p class="resend-timer" id="emailResendLink" style="display:none">
           <a class="resend-link" id="emailResendBtn">إعادة إرسال الكود</a>
         </p>
@@ -674,7 +990,9 @@
           <div class="country-select">
             <span class="country-flag">&#x1f1f8;&#x1f1e6;</span>
             <span class="country-code">+966</span>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#999" stroke-width="2"><path d="M3 5l3 3 3-3"/></svg>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#999" stroke-width="2">
+              <path d="M3 5l3 3 3-3" />
+            </svg>
           </div>
           <input type="tel" class="phone-input" id="phoneInput" placeholder="000 000 0000" dir="ltr">
         </div>
@@ -686,7 +1004,10 @@
       <div class="step-content" id="step2-otp">
         <p class="otp-info">لقد تم ارسال كود التحقق على رقم الهاتف <strong id="otpPhoneDisplay"></strong></p>
         <a class="edit-link" id="editPhoneLink">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
           تعديل الرقم
         </a>
         <div class="otp-container" id="phoneOtpContainer">
@@ -697,7 +1018,8 @@
           <input type="text" class="otp-input" maxlength="1" data-index="4" inputmode="numeric">
           <input type="text" class="otp-input" maxlength="1" data-index="5" inputmode="numeric">
         </div>
-        <p class="resend-timer" id="phoneResendTimer">يمكنك إعادة طلب الكود بعد <span id="phoneTimerCount">60</span> ثانية</p>
+        <p class="resend-timer" id="phoneResendTimer">يمكنك إعادة طلب الكود بعد <span id="phoneTimerCount">60</span>
+          ثانية</p>
         <p class="resend-timer" id="phoneResendLink" style="display:none">
           <a class="resend-link" id="phoneResendBtn">إعادة إرسال الكود</a>
         </p>
@@ -709,33 +1031,48 @@
         <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">طرق الدفع</h3>
         <div class="payment-security">
           <span>معلومات الدفع في أمان وسرية تامة</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0110 0v4" />
+          </svg>
         </div>
 
         <div class="payment-option selected" data-method="card" id="cardOption">
           <div class="payment-icons">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/200px-MasterCard_Logo.svg.png" alt="Mastercard">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png" alt="Visa">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/200px-MasterCard_Logo.svg.png"
+              alt="Mastercard">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png"
+              alt="Visa">
             <img src="https://cdn.worldvectorlogo.com/logos/apple-pay.svg" alt="Apple Pay" style="height:20px">
           </div>
           <div class="payment-option-right">
             <span class="payment-label">بطاقات الائتمان/ الخصم المباشر</span>
-            <div class="payment-radio"><div class="payment-radio-inner"></div></div>
+            <div class="payment-radio">
+              <div class="payment-radio-inner"></div>
+            </div>
           </div>
         </div>
 
         <div class="payment-option" data-method="paypal" id="paypalOption">
           <div class="payment-icons">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png" alt="PayPal" style="height:28px">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png"
+              alt="PayPal" style="height:28px">
           </div>
           <div class="payment-option-right">
             <span class="payment-label">باي بال paypal</span>
-            <div class="payment-radio"><div class="payment-radio-inner"></div></div>
+            <div class="payment-radio">
+              <div class="payment-radio-inner"></div>
+            </div>
           </div>
         </div>
 
         <div class="discount-toggle" id="discountToggle">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" />
+            <line x1="7" y1="7" x2="7.01" y2="7" />
+          </svg>
           هل لديك كود خصم؟
         </div>
         <div class="discount-input-wrapper" id="discountWrapper">
@@ -750,7 +1087,8 @@
     <!-- COURSE DETAILS -->
     <div class="course-card">
       <div class="course-header">
-        <img class="course-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=300&fit=crop" alt="دورتي">
+        <img class="course-image"
+          src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=300&fit=crop" alt="دورتي">
         <div class="course-info">
           <h2>دورتي</h2>
           <span class="course-price">$480</span>
@@ -763,32 +1101,56 @@
         </div>
         <div class="course-detail">
           <span class="course-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polygon points="10 8 16 12 10 16 10 8" />
+            </svg>
             دورة مسجلة
           </span>
           :نوع الدورة
         </div>
         <div class="course-detail">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
           <span>عدد الساعات: <strong>200</strong> س</span>
         </div>
         <div class="course-detail">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <polygon points="10 8 16 12 10 16 10 8" />
+          </svg>
           <span>عدد المحاضرات: <strong>1</strong></span>
         </div>
         <div class="course-detail">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
           <span>عدد الوحدات: <strong>1</strong></span>
         </div>
         <div class="course-detail">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6" />
+            <line x1="8" y1="12" x2="21" y2="12" />
+            <line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" />
+            <line x1="3" y1="12" x2="3.01" y2="12" />
+            <line x1="3" y1="18" x2="3.01" y2="18" />
+          </svg>
           <span>التصنيفات: <strong>تصنيف جديد</strong></span>
         </div>
       </div>
 
       <div class="course-description">
         <div class="course-detail" style="margin-bottom:8px">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="17" y1="10" x2="3" y2="10" />
+            <line x1="21" y1="6" x2="3" y2="6" />
+            <line x1="21" y1="14" x2="3" y2="14" />
+            <line x1="17" y1="18" x2="3" y2="18" />
+          </svg>
           <span>الوصف:</span>
         </div>
         <p>هذا النص سيكون مقدمة شرح عن الدورة</p>
@@ -800,12 +1162,33 @@
   <!-- SUCCESS MODAL -->
   <div class="success-overlay" id="successOverlay">
     <div class="success-modal">
-      <div class="success-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      <button class="success-close" onclick="location.reload()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="success-badge">
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M36 4l6.5 4.5 7.5-1.5 4 6.5 7 2.5v7.5l5 5.5-3 7 3 7-5 5.5V54l-7 2.5-4 6.5-7.5-1.5L36 68l-6.5-4.5-7.5 1.5-4-6.5L11 56v-7.5L6 43l3-7-3-7 5-5.5V16l7-2.5 4-6.5 7.5 1.5z" fill="#4CAF50"/>
+          <polyline points="24 36 32 44 50 28" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-      <h2>تم الدفع بنجاح!</h2>
-      <p>تهانينا! تم تسجيلك في الدورة بنجاح. يمكنك الآن البدء بالتعلم.</p>
-      <button class="btn-success" onclick="location.reload()">العودة للرئيسية</button>
+
+      <h2>لقد تمت عملية الشراء بنجاح!</h2>
+      <p class="success-order-num">رقم طلبك #2563</p>
+      <p class="success-total">إجمالي الطلب: $480</p>
+
+      <div class="success-details-box">
+        <div class="details-title">تفاصيل الطلب</div>
+        <div class="success-details-row">
+          <div class="item-info">
+            <div class="item-name">دورتي</div>
+            <div class="item-type">دورة مسجلة</div>
+          </div>
+          <div class="item-price">$480</div>
+        </div>
+      </div>
+
+      <button class="btn-success" onclick="location.reload()">ابدأ التعلم الآن</button>
     </div>
   </div>
 
@@ -1115,4 +1498,5 @@
     });
   </script>
 </body>
+
 </html>
