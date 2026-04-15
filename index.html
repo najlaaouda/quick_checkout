@@ -533,6 +533,64 @@
       height: 24px;
     }
 
+    /* ===== CARD FORM ===== */
+    .card-form {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card-form .form-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 2px;
+    }
+
+    .card-form-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e8e8e8;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: 'Cairo', sans-serif;
+      outline: none;
+      direction: ltr;
+      text-align: left;
+      transition: border-color 0.3s;
+    }
+
+    .card-form-input:focus {
+      border-color: #7b2d8e;
+    }
+
+    .card-form-input::placeholder {
+      color: #bbb;
+    }
+
+    .card-form-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .card-form-row .card-form-group {
+      flex: 1;
+    }
+
+    .card-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .login-subtitle {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
     .discount-toggle {
       display: flex;
       align-items: center;
@@ -746,6 +804,36 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    .confetti-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .success-badge svg {
+      animation: badgeBounce 0.6s ease 0.3s both;
+    }
+
+    @keyframes badgeBounce {
+      0%   { transform: scale(0) rotate(-30deg); }
+      50%  { transform: scale(1.2) rotate(5deg); }
+      70%  { transform: scale(0.9) rotate(-3deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    .success-modal h2 {
+      animation: fadeUp 0.5s ease 0.5s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     .success-close {
       position: absolute;
       top: 16px;
@@ -928,7 +1016,6 @@
     <!-- CHECKOUT -->
     <div class="checkout-card">
       <h1 class="checkout-title">الدفع</h1>
-      <p class="checkout-subtitle">لتسهيل عملية الشراء والحصول على منتجك بسرعة، اتبع الخطوات التالية:</p>
 
       <!-- STEPPER -->
       <div class="stepper">
@@ -939,12 +1026,13 @@
         <div class="step-line" id="line1-2"></div>
         <div class="step-item" data-step="2">
           <div class="step-circle" id="step2-circle">02</div>
-          <span class="step-label" id="step2-label">الدفع</span>
+          <span class="step-label" id="step2-label">طرق الدفع</span>
         </div>
       </div>
 
       <!-- STEP 1: EMAIL -->
       <div class="step-content active" id="step1">
+        <p class="login-subtitle">سجل دخولك او انشئ حسابك للوصول إلى مشترياتك</p>
         <label class="form-label">البريد الالكتروني</label>
         <input type="email" class="form-input" id="emailInput" placeholder="example@gmail.com" dir="ltr"
           style="text-align:left;">
@@ -954,6 +1042,7 @@
 
       <!-- STEP 1B: EMAIL OTP -->
       <div class="step-content" id="step1-otp">
+        <p class="login-subtitle">سجل دخولك او انشئ حسابك للوصول إلى مشترياتك</p>
         <p class="otp-info">لقد تم ارسال كود التحقق على بريدك الالكتروني "<strong id="otpEmailDisplay"></strong>"</p>
         <a class="edit-link" id="editEmailLink">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -980,6 +1069,7 @@
 
       <!-- STEP 2: PHONE -->
       <div class="step-content" id="step2">
+        <p class="login-subtitle">سجل دخولك او انشئ حسابك للوصول إلى مشترياتك</p>
         <label class="form-label">رقم الهاتف</label>
         <div class="phone-wrapper" id="phoneWrapper">
           <div class="country-select">
@@ -997,6 +1087,7 @@
 
       <!-- STEP 2B: PHONE OTP -->
       <div class="step-content" id="step2-otp">
+        <p class="login-subtitle">سجل دخولك او انشئ حسابك للوصول إلى مشترياتك</p>
         <p class="otp-info">لقد تم ارسال كود التحقق على رقم الهاتف <strong id="otpPhoneDisplay"></strong></p>
         <a class="edit-link" id="editPhoneLink">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1025,7 +1116,7 @@
       <div class="step-content" id="step3">
         <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">طرق الدفع</h3>
         <div class="payment-security">
-          <span>معلومات الدفع في أمان وسرية تامة</span>
+          <span>بياناتك محمية ومشفّرة بالكامل</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
             <path d="M7 11V7a5 5 0 0110 0v4" />
@@ -1034,13 +1125,9 @@
 
         <div class="payment-option selected" data-method="card" id="cardOption">
           <div class="payment-icons">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/200px-MasterCard_Logo.svg.png"
-              alt="Mastercard">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png"
-              alt="Visa">
-            <img src="https://cdn.worldvectorlogo.com/logos/apple-pay.svg" alt="Apple Pay" style="height:20px">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png" alt="Visa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/200px-MasterCard_Logo.svg.png" alt="Mastercard">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/200px-American_Express_logo_%282018%29.svg.png" alt="Amex" style="height:20px">
           </div>
           <div class="payment-option-right">
             <span class="payment-label">بطاقات الائتمان/ الخصم المباشر</span>
@@ -1050,18 +1137,48 @@
           </div>
         </div>
 
-        <div class="payment-option" data-method="paypal" id="paypalOption">
+        <!-- CARD FORM -->
+        <div class="card-form" id="cardForm">
+          <div class="card-form-group">
+            <label class="form-label">رقم البطاقة</label>
+            <input type="text" class="card-form-input" id="cardNumberInput" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric">
+          </div>
+          <div class="card-form-row">
+            <div class="card-form-group">
+              <label class="form-label">تاريخ الانتهاء</label>
+              <input type="text" class="card-form-input" id="cardExpiryInput" placeholder="MM/YY" maxlength="5" inputmode="numeric">
+            </div>
+            <div class="card-form-group">
+              <label class="form-label">كود التحقق (CVV)</label>
+              <input type="text" class="card-form-input" id="cardCvvInput" placeholder="000" maxlength="4" inputmode="numeric">
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-option" data-method="applepay" id="applePayOption">
           <div class="payment-icons">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png"
-              alt="PayPal" style="height:28px">
+            <img src="https://cdn.worldvectorlogo.com/logos/apple-pay.svg" alt="Apple Pay" style="height:22px">
           </div>
           <div class="payment-option-right">
-            <span class="payment-label">باي بال paypal</span>
+            <span class="payment-label">Apple Pay</span>
             <div class="payment-radio">
               <div class="payment-radio-inner"></div>
             </div>
           </div>
         </div>
+
+        <div class="payment-option" data-method="googlepay" id="googlePayOption">
+          <div class="payment-icons">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/200px-Google_Pay_Logo.svg.png" alt="Google Pay" style="height:22px">
+          </div>
+          <div class="payment-option-right">
+            <span class="payment-label">Google Pay</span>
+            <div class="payment-radio">
+              <div class="payment-radio-inner"></div>
+            </div>
+          </div>
+        </div>
+
 
         <div class="discount-toggle" id="discountToggle">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1157,6 +1274,7 @@
   <!-- SUCCESS MODAL -->
   <div class="success-overlay" id="successOverlay">
     <div class="success-modal">
+      <canvas class="confetti-canvas" id="confettiCanvas"></canvas>
       <button class="success-close" onclick="location.reload()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
@@ -1168,12 +1286,12 @@
         </svg>
       </div>
 
-      <h2>لقد تمت عملية الشراء بنجاح!</h2>
+      <h2>تم الشراء بنجاح!</h2>
       <p class="success-order-num">رقم طلبك #2563</p>
-      <p class="success-total">إجمالي الطلب: $480</p>
+      <p class="success-total">إجمالي طلبك: $480</p>
 
       <div class="success-details-box">
-        <div class="details-title">تفاصيل الطلب</div>
+        <div class="details-title">تفاصيل طلبك</div>
         <div class="success-details-row">
           <div class="item-info">
             <div class="item-name">دورتي</div>
@@ -1427,12 +1545,36 @@
     });
 
     // ===== STEP 3: PAYMENT =====
+    const cardForm = document.getElementById('cardForm');
+
     document.querySelectorAll('.payment-option').forEach(opt => {
       opt.addEventListener('click', () => {
         document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
         opt.classList.add('selected');
         selectedPayment = opt.dataset.method;
+        cardForm.style.display = (selectedPayment === 'card') ? 'flex' : 'none';
       });
+    });
+
+    // Card number formatting (0000 0000 0000 0000)
+    document.getElementById('cardNumberInput').addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '');
+      if (val.length > 16) val = val.substring(0, 16);
+      val = val.replace(/(.{4})/g, '$1 ').trim();
+      e.target.value = val;
+    });
+
+    // Expiry formatting (MM/YY)
+    document.getElementById('cardExpiryInput').addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '');
+      if (val.length > 4) val = val.substring(0, 4);
+      if (val.length >= 2) val = val.substring(0, 2) + '/' + val.substring(2);
+      e.target.value = val;
+    });
+
+    // CVV - numbers only
+    document.getElementById('cardCvvInput').addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4);
     });
 
     document.getElementById('discountToggle').addEventListener('click', () => {
@@ -1461,8 +1603,63 @@
         btn.disabled = false;
         btn.textContent = 'تأكيد الدفع $480';
         document.getElementById('successOverlay').classList.add('show');
+        launchConfetti();
       }, 2000);
     });
+
+    // ===== CONFETTI =====
+    function launchConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      const modal = canvas.parentElement;
+      canvas.width = modal.offsetWidth;
+      canvas.height = modal.offsetHeight;
+      const ctx = canvas.getContext('2d');
+      const colors = ['#7b2d8e', '#e91e63', '#ff9800', '#4caf50', '#2196f3', '#ffd700', '#9c27b0', '#00bcd4'];
+      const pieces = [];
+
+      for (let i = 0; i < 120; i++) {
+        pieces.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2 - 40,
+          vx: (Math.random() - 0.5) * 12,
+          vy: (Math.random() - 1) * 10 - 2,
+          w: Math.random() * 8 + 4,
+          h: Math.random() * 6 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rot: Math.random() * 360,
+          rotV: (Math.random() - 0.5) * 12,
+          gravity: 0.15,
+          opacity: 1
+        });
+      }
+
+      let frame = 0;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        pieces.forEach(p => {
+          p.x += p.vx;
+          p.vy += p.gravity;
+          p.y += p.vy;
+          p.rot += p.rotV;
+          p.vx *= 0.99;
+          if (frame > 60) p.opacity -= 0.015;
+          if (p.opacity <= 0) return;
+          alive = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot * Math.PI / 180);
+          ctx.globalAlpha = Math.max(0, p.opacity);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        frame++;
+        if (alive && frame < 200) requestAnimationFrame(animate);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      animate();
+    }
 
     // ===== PHONE FORMAT =====
     document.getElementById('phoneInput').addEventListener('input', (e) => {
